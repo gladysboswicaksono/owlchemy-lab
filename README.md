@@ -1,6 +1,6 @@
 # Owlchemy Lab
 
-A small course page you run on your own computer to practise editing lessons as files. It has four components, two lessons and one stylesheet.
+A small course page you run on your own computer to practise editing lessons as files. It has four components, one example lesson and one stylesheet.
 
 It does not track anything. There is no account, no server, no database and no saved progress. The page reads the files in this folder and shows them.
 
@@ -8,10 +8,10 @@ It does not track anything. There is no account, no server, no database and no s
 
 You need [Node.js](https://nodejs.org/) 22.12 or later. Check with `node -v`.
 
-Open this folder in VS Code, open a terminal (Terminal → New Terminal) and run these two commands. The first downloads the tools the project needs and takes a minute. You only run it once.
+Open this folder in VS Code, open a terminal (Terminal → New Terminal) and run these two commands. The first installs the tools at the versions recorded in `package-lock.json`. Run it when first setting up the project, after the lockfile changes, or after deleting `node_modules/`.
 
 ```bash
-npm install
+npm ci
 ```
 
 ```bash
@@ -38,11 +38,11 @@ The lesson file has notes in it explaining each part. Notes written as `{/* like
 | `src/main.jsx` | The page around a lesson: header, lesson list, title | Rarely |
 | `index.html`, `vite.config.js`, `eslint.config.js` | Project setup | Rarely |
 | `package.json`, `package-lock.json` | The list of tools the project uses | No, npm manages these |
-| `node_modules/`, `dist/` | Downloaded and generated files | No, and Git ignores them |
+| `node_modules/`, `dist/` | Created by installing packages and building the site | No; safe to delete, and Git ignores them |
 
 ## Lessons
 
-A lesson is a file in `lessons/` ending in `.mdx`. The number at the start of the file name sets the order. To add a lesson, copy an existing file, rename it `03-your-topic.mdx` and give it a new `id`. It appears in the lesson list on its own.
+A lesson is a file in `lessons/` ending in `.mdx`. The number at the start of the file name sets the order. To add a lesson, copy the example file, rename it `02-your-topic.mdx` and give it a new `id`. It appears in the lesson list on its own.
 
 Every lesson starts with a block between two `---` lines:
 
@@ -54,7 +54,7 @@ description: Identify a workplace task and evidence of success.
 ---
 ```
 
-`title` and `description` are shown at the top of the page and are safe to reword. `id` is the lesson's permanent name and the end of its web address, so leave it alone once you have shared a link. Put quotes around a value that contains a colon.
+The page uses only these three metadata fields. `title` and `description` are shown at the top of the page and are safe to reword. `id` is the lesson's permanent name and the end of its web address, so leave it alone once you have shared a link. Put quotes around a value that contains a colon.
 
 Below that block, write Markdown. Start section headings at `##`, because the title is already the page's main heading.
 
@@ -69,7 +69,7 @@ Below that block, write Markdown. Start section headings at `##`, because the ti
 | `<Comparison>` with two `<ComparisonItem title="…" token="…">` | Two cards side by side |
 | A fenced code block | Coloured code with a language label and a Copy button |
 
-The second lesson, `lessons/02-component-tour.mdx`, shows each one with its source.
+The example lesson, `lessons/01-plan-a-clear-activity.mdx`, demonstrates these components and includes notes explaining how to use them.
 
 ## When something breaks
 
@@ -93,4 +93,4 @@ This looks for mistakes in the code, including accessibility mistakes in the com
 
 ## Using this with Git
 
-This folder is not a Git repository yet. Create one from GitHub Desktop (File → Add local repository, then "create a repository") when your course reaches that step. The `.gitignore` file already keeps `node_modules/` and `dist/` out of your commits.
+This folder is already a Git repository. To open it in GitHub Desktop, choose File → Add local repository and select this folder. Review your changes and commit them when ready. The `.gitignore` file keeps `node_modules/` and `dist/` out of your commits; keep `package-lock.json` committed so installs use the same package versions.
