@@ -1,0 +1,106 @@
+---
+id: component-tour
+title: "Component tour"
+type: lesson
+optional: true
+description: Every component in this project, with the source you type and the result you get.
+---
+
+{/* A reference page. Each section shows the source first, then the same
+    source rendered. Copy from here into your own lesson. */}
+
+## Callout
+
+A callout takes one `type`. The three types are `note`, `tip` and `warning`. Leave `type` out and you get a note.
+
+```mdx
+<Callout type="note">
+  Background the learner should keep in mind.
+</Callout>
+```
+
+<Callout type="note">
+  Background the learner should keep in mind.
+</Callout>
+
+<Callout type="tip">
+  A shortcut, or a better way to do the step.
+</Callout>
+
+<Callout type="warning">
+  Something that causes a problem if it is missed.
+</Callout>
+
+## Information
+
+An information box carries your own `title`. Use it for the "why" behind a step, which some learners want and others skip.
+
+```mdx
+<Information title="Why the file name starts with a number">
+  The number sets the order of the lessons. The `id` inside the file sets
+  the link.
+</Information>
+```
+
+<Information title="Why the file name starts with a number">
+  The number sets the order of the lessons. The `id` inside the file sets
+  the link.
+</Information>
+
+## Comparison
+
+A comparison holds exactly two cards. Each card needs a `title` and a `token`. The `label` describes the pair for screen reader users and is not shown.
+
+```mdx
+<Comparison label="Two places to keep a lesson">
+  <ComparisonItem title="Inside an authoring tool" token="Tool-managed">
+    The tool stores the lesson. You see it through the tool's screens.
+  </ComparisonItem>
+  <ComparisonItem title="In a text file" token="File-based">
+    The lesson is a file you can open, compare and review line by line.
+  </ComparisonItem>
+</Comparison>
+```
+
+<Comparison label="Two places to keep a lesson">
+  <ComparisonItem title="Inside an authoring tool" token="Tool-managed">
+    The tool stores the lesson. You see it through the tool's screens.
+  </ComparisonItem>
+  <ComparisonItem title="In a text file" token="File-based">
+    The lesson is a file you can open, compare and review line by line.
+  </ComparisonItem>
+</Comparison>
+
+<Callout type="note">
+  Markdown works inside every component: lists, links, `inline code` and
+  emphasis. Leave a blank line before and after a list.
+</Callout>
+
+## Code block
+
+A code block needs no component name. Open with three backticks and a language, close with three backticks.
+
+{/* The outer fence here uses four backticks so that the three-backtick
+    fence inside it is shown as text. */}
+
+````mdx
+```bash
+npm run dev
+```
+````
+
+```bash
+npm run dev
+```
+
+The language word sets the label in the corner. Leave it out and the block is labelled "Code" and shown in one colour.
+
+```
+Plain text, exactly as typed.
+```
+
+A long line scrolls sideways inside the block, so the page keeps its shape on a phone.
+
+```js
+const message = 'This line is long on purpose, so you can see the block scroll sideways while the rest of the page stays still.';
+```

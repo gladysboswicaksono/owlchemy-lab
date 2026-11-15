@@ -1,0 +1,12 @@
+# Files Git should not save.
+
+# Downloaded packages. `npm install` recreates this folder.
+node_modules/
+
+# The built website. `npm run build` recreates this folder.
+dist/
+
+# Files your computer or editor adds on its own.
+.DS_Store
+Thumbs.db
+*.log

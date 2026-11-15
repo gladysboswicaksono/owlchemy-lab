@@ -1,0 +1,514 @@
+/* Colours for the code inside code blocks. This ready-made set is built to
+   stay readable on a near-white background. */
+@import 'highlight.js/styles/a11y-light.css';
+
+/* ==========================================================================
+   THEME
+   Every colour, font and spacing value is named once here and reused below.
+   To restyle the project, change the values in this block.
+
+   The number after each colour is its contrast against the page background.
+   Text needs 4.5 or more to be readable for most people (WCAG AA). Check a
+   new colour at https://webaim.org/resources/contrastchecker/ before use.
+   ========================================================================== */
+:root {
+  /* Page */
+  --page: #fffbf5; /* warm cream background */
+  --surface: #ffffff; /* cards and code */
+  --ink: #1f2437; /* body text, 14.9 */
+  --muted: #545b70; /* secondary text, 6.6 */
+  --line: #8a8fa3; /* borders, 3.1 (borders need 3.0) */
+
+  /* Brand */
+  --teal: #0f6e66; /* links and buttons, 5.9 */
+  --teal-dark: #0a4f49; /* links and buttons on hover */
+  --coral: #b93a12; /* section headings, 5.5 */
+  --sun: #f59e0b; /* decoration only. Too light for text. */
+  --focus: #4338ca; /* keyboard focus ring, 7.7 */
+
+  /* Boxes: a strong colour for the label and border, a pale one behind. */
+  --note: #1d4ed8; /* 6.1 on its tint */
+  --note-tint: #eef4ff;
+  --tip: #15703c; /* 5.6 on its tint */
+  --tip-tint: #eaf7ef;
+  --warning: #8f4400; /* 6.4 on its tint */
+  --warning-tint: #fff3dc;
+  --info: #6d28d9; /* 6.3 on its tint */
+  --info-tint: #f4efff;
+  --slate: #475569; /* first comparison card, 7.6 on white */
+
+  /* Type. System fonts load instantly and need no download. */
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono',
+    monospace;
+
+  /* Spacing and shape */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --radius: 0.625rem;
+
+  /* Tells the browser this is a light page, so scrollbars and form controls
+     match. */
+  color-scheme: light;
+}
+
+/* ==========================================================================
+   BASE
+   Plain HTML elements: text, headings, links, lists.
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+}
+html {
+  /* Stops phones from resizing text on their own. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--sans);
+  /* 1.125rem is 18px by default and grows if the reader raises their
+     browser's text size. */
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  text-wrap: balance;
+}
+h1 {
+  margin: 0 0 var(--space-2);
+  font-size: clamp(1.9rem, 5vw, 2.75rem);
+  letter-spacing: -0.02em;
+}
+h2 {
+  margin: var(--space-4) 0 var(--space-2);
+  color: var(--coral);
+  font-size: 1.5rem;
+}
+h3 {
+  margin: var(--space-3) 0 var(--space-1);
+  font-size: 1.15rem;
+}
+p {
+  margin: 0 0 var(--space-2);
+}
+ul,
+ol {
+  margin: 0 0 var(--space-2);
+  padding-left: 1.4rem;
+}
+li + li {
+  margin-top: 0.4rem;
+}
+/* Links keep their underline, so they are not marked by colour alone. */
+a {
+  color: var(--teal);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+}
+a:hover {
+  color: var(--teal-dark);
+  text-decoration-thickness: 0.14em;
+}
+/* The outline shown when someone moves through the page with a keyboard.
+   Never remove it. */
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+h1:focus-visible {
+  outline-offset: 8px;
+}
+::selection {
+  background: var(--teal);
+  color: #ffffff;
+}
+button {
+  min-height: 2.75rem; /* 44px: large enough to tap comfortably */
+  padding: 0.4rem 1rem;
+  border: 2px solid var(--teal);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--teal);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 150ms,
+    color 150ms;
+}
+button:hover {
+  background: var(--teal);
+  color: #ffffff;
+}
+/* Inline code, like a file name inside a sentence. */
+code {
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: #f1ece2;
+  font-family: var(--mono);
+  font-size: 0.88em;
+  overflow-wrap: anywhere;
+}
+/* Hidden on screen, still read aloud by screen readers. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   PAGE LAYOUT
+   Header, lesson list, reading column, footer.
+   ========================================================================== */
+.page {
+  width: min(100% - 2rem, 46rem);
+  margin-inline: auto;
+}
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 1;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: #ffffff;
+  /* Moved off screen until a keyboard user reaches it. */
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  transform: none;
+  color: #ffffff;
+}
+.site-header {
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid #e3dccf;
+  background: var(--surface);
+  /* The stripe across the top. Decoration only, so the light sun colour
+     is allowed here. */
+  border-top: 6px solid transparent;
+  border-image: linear-gradient(
+      90deg,
+      var(--teal),
+      var(--sun) 55%,
+      var(--coral)
+    )
+    1 0 0 0;
+}
+.site-name {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.site-tagline {
+  margin: 0 0 var(--space-2);
+  color: var(--muted);
+  font-size: 1rem;
+}
+.lesson-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.lesson-list li {
+  margin: 0;
+}
+.lesson-list a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 1rem 0.35rem 0.4rem;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.lesson-list a:hover {
+  border-color: var(--teal);
+  text-decoration: underline;
+}
+/* The lesson you are on. Marked by a filled shape and bold number as well
+   as colour. */
+.lesson-list a[aria-current='page'] {
+  border-color: var(--teal);
+  background: var(--teal);
+  color: #ffffff;
+}
+.lesson-number {
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  flex: none;
+  border-radius: 50%;
+  background: #f1ece2;
+  color: var(--ink);
+  font-size: 0.85rem;
+}
+[aria-current='page'] .lesson-number {
+  background: #ffffff;
+  color: var(--teal-dark);
+}
+main {
+  padding: var(--space-4) 0;
+}
+.eyebrow {
+  margin: 0 0 var(--space-1);
+  color: var(--teal);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.intro {
+  color: var(--muted);
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+.source-file {
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid #e3dccf;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid #e3dccf;
+}
+.pager a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem; /* space between the words and the arrow */
+  min-height: 2.75rem;
+  font-weight: 600;
+}
+.pager-next {
+  margin-left: auto;
+  padding: 0.4rem 1.2rem;
+  border-radius: 999px;
+  background: var(--teal);
+  color: #ffffff;
+  text-decoration: none;
+}
+.pager-next:hover {
+  background: var(--teal-dark);
+  color: #ffffff;
+  text-decoration: underline;
+}
+.site-footer {
+  padding: var(--space-3) 0;
+  border-top: 1px solid #e3dccf;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.site-footer p {
+  margin: 0;
+}
+/* Shown when a lesson breaks a component rule. */
+.lesson-problem {
+  padding: var(--space-3);
+  border: 2px solid var(--warning);
+  border-radius: var(--radius);
+  background: var(--warning-tint);
+}
+.lesson-problem-title {
+  color: var(--warning);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   COMPONENTS
+   One block per component in components.jsx.
+   ========================================================================== */
+
+/* Shared by Callout and Information: a pale box with a coloured left edge.
+   Each box sets --accent and --tint, and the rules below use them. */
+.callout,
+.information {
+  margin: var(--space-3) 0;
+  padding: var(--space-2) var(--space-3);
+  border-left: 5px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--tint);
+}
+.box-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.35rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+.icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  flex: none;
+}
+/* Removes the gap under the last paragraph or list in a box. */
+.box-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* Callout: note, tip, warning */
+.callout-note {
+  --accent: var(--note);
+  --tint: var(--note-tint);
+}
+.callout-tip {
+  --accent: var(--tip);
+  --tint: var(--tip-tint);
+}
+.callout-warning {
+  --accent: var(--warning);
+  --tint: var(--warning-tint);
+}
+
+/* Information */
+.information {
+  --accent: var(--info);
+  --tint: var(--info-tint);
+}
+
+/* Comparison: two cards in a row */
+.comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+}
+.comparison-card {
+  --accent: var(--slate);
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+/* The second card is the one the lesson is steering towards. */
+.comparison-card:last-child {
+  --accent: var(--teal);
+}
+.comparison-token {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.comparison-card h3 {
+  margin: var(--space-2) 0 var(--space-1);
+}
+/* On a narrow screen the cards stack, first above second. */
+@media (max-width: 40rem) {
+  .comparison {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Code block */
+.code-block {
+  margin: var(--space-3) 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+.code-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.4rem 0.5rem 0.4rem var(--space-2);
+  border-bottom: 1px solid var(--line);
+  background: #f7f3ea;
+  font-size: 0.9rem;
+}
+.code-language {
+  color: var(--muted);
+  font-weight: 700;
+}
+/* Pushes the status message and the button to the right. */
+.code-status {
+  margin-left: auto;
+  color: var(--tip);
+  font-weight: 600;
+  text-align: right;
+}
+.code-toolbar button {
+  flex: none;
+}
+pre {
+  margin: 0;
+  padding: var(--space-2);
+  /* A long line scrolls sideways inside the block. The page itself never
+     scrolls sideways. */
+  overflow-x: auto;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  tab-size: 2;
+}
+pre:focus-visible {
+  outline-offset: -3px;
+}
+pre code,
+pre code.hljs {
+  padding: 0;
+  background: transparent;
+  font-size: inherit;
+  overflow-wrap: normal;
+}
+
+/* ==========================================================================
+   READER PREFERENCES
+   ========================================================================== */
+
+/* Some people get dizzy or distracted by movement and switch it off in
+   their system settings. Respect that. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* On paper, drop the navigation and buttons and keep the lesson. */
+@media print {
+  .site-header nav,
+  .skip-link,
+  .pager,
+  .code-toolbar button {
+    display: none;
+  }
+}

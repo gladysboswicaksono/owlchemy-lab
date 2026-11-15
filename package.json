@@ -1,0 +1,34 @@
+{
+  "name": "owlchemy-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A small practice project for editing MDX lessons. No tracking, no backend.",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "lint": "eslint .",
+    "check": "npm run lint && npm run build"
+  },
+  "dependencies": {
+    "highlight.js": "^11.12.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@mdx-js/rollup": "^3.1.1",
+    "@vitejs/plugin-react": "^6.0.0",
+    "eslint": "^9.39.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "globals": "^16.5.0",
+    "rehype-highlight": "^7.0.2",
+    "remark-frontmatter": "^5.0.0",
+    "remark-mdx-frontmatter": "^6.0.0",
+    "vite": "^8.3.8"
+  }
+}
