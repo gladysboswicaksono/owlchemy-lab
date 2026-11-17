@@ -286,12 +286,14 @@ main {
   font-size: 1.25rem;
   line-height: 1.5;
 }
-.source-file {
+/* The title block of a lesson, with a thin line between it and the lesson. */
+.lesson-header {
   margin-bottom: var(--space-3);
   padding-bottom: var(--space-3);
   border-bottom: 1px solid #e3dccf;
-  color: var(--muted);
-  font-size: 0.95rem;
+}
+.lesson-header > :last-child {
+  margin-bottom: 0;
 }
 .pager {
   display: flex;

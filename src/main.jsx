@@ -143,16 +143,17 @@ function App() {
 
       <main id="main" className="page">
         <article className="reading">
-          <p className="eyebrow">
-            Lesson {index + 1} of {lessons.length}
-          </p>
-          <h1 ref={heading} tabIndex={-1}>
-            {lesson.title}
-          </h1>
-          {lesson.description && <p className="intro">{lesson.description}</p>}
-          <p className="source-file">
-            You are reading <code>lessons/{lesson.file}</code>
-          </p>
+          <header className="lesson-header">
+            <p className="eyebrow">
+              Lesson {index + 1} of {lessons.length}
+            </p>
+            <h1 ref={heading} tabIndex={-1}>
+              {lesson.title}
+            </h1>
+            {lesson.description && (
+              <p className="intro">{lesson.description}</p>
+            )}
+          </header>
 
           <LessonProblem key={lesson.id} file={lesson.file}>
             {/* The lesson text, with the four components made available. */}
